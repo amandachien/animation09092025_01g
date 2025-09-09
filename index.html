@@ -89,6 +89,40 @@
         .message.user, .message.ai {
             border-left: none !important;
         }
+
+        video#camera-view,
+canvas#detection-canvas,
+canvas#ar-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none; /* Let UI elements receive clicks */
+}
+
+#loading,
+#instructions,
+#status,
+#debug,
+#physics-stats,
+#ai-interface,
+#controls {
+    position: fixed;
+    z-index: 10;
+}
+
+#ai-interface.visible {
+    display: flex !important;
+}
+
+#ai-interface {
+    display: none;
+}
+
+#controls, #ai-interface {
+    display: block !important;
+}
     </style>
 </head>
 
