@@ -142,13 +142,14 @@
             background: rgba(0, 0, 0, 0.95);
             border: 0px;
             border-radius: 20px;
-            padding: 10px;
+            padding: 50px;
             min-width: 300px;
             max-width: 90vw;
             max-height: 85vh;
             z-index: 200;
             display: none;
             flex-direction: column;
+            font-family: 'Space Mono', monospace;
             
             /* Critical for mobile performance */
             will-change: transform;
@@ -258,7 +259,7 @@
 
         /* Message styling */
         .message {
-            margin: 8px 0;
+            margin: 8px;
             padding: 10px;
             border-radius: 20px;
             font-size: 11px;
@@ -317,6 +318,8 @@
         /* Text input area */
         #text-input-area {
             margin: 15px 0;
+            font-family: 'Space Mono', monospace;
+            
             flex-shrink: 0;
         }
 
@@ -326,6 +329,8 @@
             border-radius: 20px;
             border: 0px;
             background: rgba(0,0,0,0.7);
+            font-family: 'Space Mono', monospace;
+            
             color: white;
             font-size: 11px;
             box-sizing: border-box;
@@ -338,7 +343,7 @@
             margin-top: 15px;
             flex-shrink: 0;
             padding-top: 10px;
-            border-top: 1px solid #333;
+            border-top: 0px;
         }
         
         #voice-status {
