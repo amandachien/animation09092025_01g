@@ -13,6 +13,7 @@
   status = 200
 
 # Security headers
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -20,8 +21,8 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://api-inference.huggingface.co https://cdn.jsdelivr.net https://unpkg.com; worker-src 'self' blob:; child-src blob:; object-src 'none';"
-    
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://api-inference.huggingface.co https://cdn.jsdelivr.net https://unpkg.com; worker-src 'self' blob:; child-src blob:; object-src 'none';"
+
 # API function headers
 [[headers]]
   for = "/.netlify/functions/*"
