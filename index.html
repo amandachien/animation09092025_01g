@@ -8,89 +8,17 @@
     <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            font-family: 'Space Mono', monospace !important;
-            background: #000;
-            color: #111 !important;
-            touch-action: none;
-        }
-        /* Change all text color to black */
-        body, #instructions, #status, #debug, #physics-stats, #ai-interface, #ai-conversation,
-        .message, .message.user, .message.ai, #quick-commands, #text-input-area, .ai-controls,
-        #voice-status, .wave-3d, .collision-spark, .hand-landmark, .fingertip, .dribble-fingertip,
-        .pinch-indicator, #loading, #controls, button, input, h3, div, span, label {
-            color: #111 !important;
-            font-family: 'Space Mono', monospace !important;
-        }
-        /* All buttons: white, 85% opacity, rounded corners, black text */
-        button, .quick-cmd, .ai-button {
-            background: rgba(255,255,255,0.85) !important;
-            color: #111 !important;
-            border: none !important;
-            border-radius: 999px !important;
-            font-family: 'Space Mono', monospace !important;
-            font-size: 13px !important;
-            font-weight: 700 !important;
-            margin: 2px;
-            padding: 10px 20px !important;
-            transition: background 0.15s, color 0.15s;
-            box-shadow: none !important;
-        }
-        /* On click (active/tab): solid white */
-        button:active, .quick-cmd:active, .ai-button:active {
-            background: #fff !important;
-            color: #111 !important;
-        }
-        /* On hover: slightly more opaque */
-        button:hover, .quick-cmd:hover, .ai-button:hover {
-            background: rgba(255,255,255,0.95) !important;
-            color: #111 !important;
-        }
-        /* Disabled buttons: faded */
-        button:disabled, .quick-cmd:disabled, .ai-button:disabled {
-            background: rgba(200,200,200,0.5) !important;
-            color: #888 !important;
-        }
-        /* Input fields: black text, Space Mono */
-        input, #ai-text-input {
-            color: #111 !important;
-            font-family: 'Space Mono', monospace !important;
-            background: rgba(255,255,255,0.85) !important;
-            border-radius: 999px !important;
-            border: 1px solid #ccc !important;
-        }
-        /* Headings: black text */
-        h1, h2, h3, h4, h5, h6 {
-            color: #111 !important;
-            font-family: 'Space Mono', monospace !important;
-        }
-        /* AI interface tweaks */
-        #ai-interface, #ai-conversation, .message, .message.user, .message.ai {
-            color: #111 !important;
-            font-family: 'Space Mono', monospace !important;
-        }
-        /* Quick commands grid text */
-        #quick-commands, .quick-cmd {
-            color: #111 !important;
-        }
-        /* Status and debug panels */
-        #status, #debug, #physics-stats {
-            color: #111 !important;
-        }
-        /* Remove any previous button color overrides */
-        .ai-button, .ai-button.active {
-            background: rgba(255,255,255,0.85) !important;
-            color: #111 !important;
-            border-radius: 999px !important;
-        }
-        /* Remove colored borders from messages */
-        .message.user, .message.ai {
-            border-left: none !important;
-        }
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Space Mono', monospace !important;
+    background: #000;
+    color: #111 !important;
+    touch-action: none;
+}
 
-        video#camera-view,
+/* Camera and canvas layers */
+video#camera-view,
 canvas#detection-canvas,
 canvas#ar-canvas {
     position: fixed;
@@ -98,30 +26,234 @@ canvas#ar-canvas {
     width: 100vw;
     height: 100vh;
     z-index: 1;
-    pointer-events: none; /* Let UI elements receive clicks */
+    pointer-events: none;
 }
 
-#loading,
-#instructions,
-#status,
-#debug,
-#physics-stats,
-#ai-interface,
-#controls {
+/* Overlay panels */
+#loading {
     position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.95);
+    color: #111 !important;
+    padding: 16px 24px;
+    border-radius: 12px;
+    min-width: 220px;
+    text-align: center;
     z-index: 10;
 }
 
+#instructions {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.95);
+    color: #111 !important;
+    padding: 12px 20px;
+    border-radius: 10px;
+    min-width: 200px;
+    text-align: center;
+    z-index: 10;
+}
+
+#status {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.85);
+    color: #111 !important;
+    padding: 8px 18px;
+    border-radius: 8px;
+    min-width: 180px;
+    text-align: center;
+    z-index: 10;
+}
+
+#debug {
+    position: fixed;
+    bottom: 80px;
+    left: 10px;
+    background: rgba(255,255,255,0.85);
+    color: #111 !important;
+    padding: 6px 12px;
+    border-radius: 8px;
+    min-width: 120px;
+    max-width: 40vw;
+    font-size: 12px;
+    max-height: 80px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+#physics-stats {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.95);
+    color: #111 !important;
+    padding: 10px 16px;
+    border-radius: 10px;
+    min-width: 140px;
+    text-align: left;
+    z-index: 10;
+}
+
+#controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.95);
+    color: #111 !important;
+    padding: 10px 16px;
+    border-radius: 10px;
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+}
+
+/* AI Interface modal */
+#ai-interface {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 20, 40, 0.97);
+    border: 2px solid #00ff88;
+    border-radius: 15px;
+    padding: 20px;
+    min-width: 300px;
+    max-width: 90vw;
+    max-height: 80vh;
+    z-index: 200;
+    display: none;
+    overflow: hidden;
+    flex-direction: column;
+    color: #111 !important;
+    font-family: 'Space Mono', monospace !important;
+}
 #ai-interface.visible {
     display: flex !important;
 }
 
-#ai-interface {
-    display: none;
+/* Conversation area */
+#ai-conversation {
+    max-height: 120px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+    color: #111 !important;
 }
 
-#controls, #ai-interface {
-    display: block !important;
+/* Quick commands grid */
+#quick-commands, .quick-cmd {
+    color: #111 !important;
+}
+.quick-cmd {
+    background: #4a90e2 !important;
+    color: white !important;
+    padding: 8px 6px !important;
+    font-size: 11px !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer;
+    transition: background 0.2s;
+    min-height: 30px;
+}
+.quick-cmd:hover {
+    background: #357abd !important;
+}
+.quick-cmd:active {
+    background: #2968a3 !important;
+}
+
+/* Input fields */
+input, #ai-text-input {
+    color: #111 !important;
+    font-family: 'Space Mono', monospace !important;
+    background: rgba(255,255,255,0.85) !important;
+    border-radius: 999px !important;
+    border: 1px solid #ccc !important;
+    padding: 8px 14px !important;
+    font-size: 13px !important;
+}
+
+/* Buttons */
+button, .ai-button {
+    background: rgba(255,255,255,0.85) !important;
+    color: #111 !important;
+    border: none !important;
+    border-radius: 999px !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    margin: 2px;
+    padding: 10px 20px !important;
+    transition: background 0.15s, color 0.15s;
+    box-shadow: none !important;
+}
+button:active, .ai-button:active {
+    background: #fff !important;
+    color: #111 !important;
+}
+button:hover, .ai-button:hover {
+    background: rgba(255,255,255,0.95) !important;
+    color: #111 !important;
+}
+button:disabled, .ai-button:disabled {
+    background: rgba(200,200,200,0.5) !important;
+    color: #888 !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #111 !important;
+    font-family: 'Space Mono', monospace !important;
+}
+
+/* AI controls */
+.ai-controls {
+    text-align: center;
+    margin-top: 15px;
+    flex-shrink: 0;
+    padding-top: 10px;
+    border-top: 1px solid #333;
+}
+
+/* Hide colored borders from messages */
+.message.user, .message.ai {
+    border-left: none !important;
+}
+
+/* Miscellaneous overlays */
+.hand-landmark, .fingertip, .dribble-fingertip, .pinch-indicator, .collision-spark, .wave-3d {
+    position: absolute;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    #ai-interface {
+        min-width: 90vw;
+        padding: 10px;
+    }
+    #loading, #instructions, #status, #physics-stats, #controls, #debug {
+        min-width: 120px;
+        font-size: 14px;
+        padding: 8px 8px;
+    }
+    #ai-conversation {
+        max-height: 80px;
+        font-size: 13px;
+    }
 }
     </style>
 </head>
@@ -244,14 +376,6 @@ class AIAssistant {
     
     async init() {
         this.app.log('🤖 Initializing AI Assistant...');
-        
-        // Load API key securely
-        // await this.loadApiKey();
-        
-        // Create enhanced UI
-        // this.createEnhancedInterface();
-        
-        // this.app.log('✅ AI Assistant ready!');
     }
     
     
