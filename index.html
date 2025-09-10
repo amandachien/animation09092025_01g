@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <title>WebAR Wave Physics - AI Voice Interaction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
             overflow: hidden;
-            font-family: Arial, sans-serif;
+            font-family: 'Space Mono', monospace;
             background: #000;
             color: white;
             touch-action: none;
@@ -757,9 +758,6 @@ class AIAssistant {
     
     async init() {
         this.app.log('🤖 Initializing AI Assistant...');
-        
-        // Load API key securely
-        await this.loadApiKey();
         
         // Create enhanced UI
         this.createEnhancedInterface();
