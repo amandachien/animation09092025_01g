@@ -140,8 +140,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 20, 40, 0.95);
-            border: 2px solid #00ff88;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #fff;
             border-radius: 15px;
             padding: 20px;
             min-width: 300px;
@@ -293,8 +293,8 @@
         }
 
         .quick-cmd {
-            background: #4a90e2 !important;
-            color: white !important;
+            background: #fff !important;
+            color: #000 !important;
             padding: 8px 6px !important;
             font-size: 11px !important;
             border: none !important;
@@ -306,11 +306,11 @@
         }
 
         .quick-cmd:hover:not(:active) {
-            background: #357abd !important;
+            background: #eee !important;
         }
 
         .quick-cmd:active {
-            background: #2968a3 !important;
+            background: #ddd !important;
             transform: scale(0.98);
         }
 
@@ -340,6 +340,24 @@
             flex-shrink: 0;
             padding-top: 10px;
             border-top: 1px solid #333;
+        }
+
+        /* "Clear Chat" and "Close" Buttons in AI Controls */
+        .ai-controls button {
+            background: #fff !important;   /* White background */
+            color: #000 !important;        /* Black text */
+            border: none;
+            border-radius: 5px;
+            font-size: 12px;
+            margin: 2px;
+            font-family: 'Space Mono', monospace;
+            padding: 8px 16px;
+        }
+        .ai-controls button:hover {
+            background: #eee !important;
+        }
+        .ai-controls button:active {
+            background: #ddd !important;
         }
         
         #voice-status {
@@ -833,8 +851,8 @@ class AIAssistant {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                background: rgba(0, 20, 40, 0.95);
-                border: 2px solid #00ff88;
+                background: rgba(0, 0, 0, 0.8);
+                border: 1px solid #fff;
                 border-radius: 15px;
                 padding: 20px;
                 min-width: 300px;
@@ -868,10 +886,28 @@ class AIAssistant {
                 padding-top: 10px;
                 border-top: 1px solid #333;
             }
+
+            /* "Clear Chat" and "Close" Buttons in AI Controls */
+            .ai-controls button {
+                background: #fff !important;   /* White background */
+                color: #000 !important;        /* Black text */
+                border: none;
+                border-radius: 5px;
+                font-size: 12px;
+                margin: 2px;
+                font-family: 'Space Mono', monospace;
+                padding: 8px 16px;
+            }
+            .ai-controls button:hover {
+                background: #eee !important;
+            }
+            .ai-controls button:active {
+                background: #ddd !important;
+            }
             
             .quick-cmd {
-                background: #4a90e2 !important;
-                color: white !important;
+                background: #fff !important;
+                color: #000 !important;
                 padding: 8px 6px !important;
                 font-size: 11px !important;
                 border: none !important;
@@ -881,10 +917,10 @@ class AIAssistant {
                 min-height: 30px;
             }
             .quick-cmd:hover {
-                background: #357abd !important;
+                background: #eee !important;
             }
             .quick-cmd:active {
-                background: #2968a3 !important;
+                background: #ddd !important;
             }
         `;
         document.head.appendChild(style);
