@@ -24,7 +24,7 @@ A real-time WebAR application that combines hand gesture recognition, realistic 
 
 ## Live Demo
 
-🔗 **[https://animation0910202501c.netlify.app/](https://animation0910202501c.netlify.app/)**
+🔗 **[https://animation0909202501g.netlify.app/](https://animation0909202501g.netlify.app/)**
 
 ## Tech Stack
 
